@@ -38,15 +38,14 @@ function print(report) {
 }
 
 while (true) {
-
-    var input = prompt("Please insert name of student...");
+    input = prompt("Please insert name of student...");
     input = input.toLowerCase();
     if (input === "quit" || input === null) {
         break;
     }
 
     for (var key in student) {
-        if (input === student[key].name.toLowerCase().startsWith(input + ' ')) {
+        if (student[key].name.toLowerCase().startsWith(input + ' ')) {
             message += ("<h2>Student: " + student[key].name + "</h2>");
             message += ("<p>Age: " + student[key].age + "</p>");
             message += ("<p>Course: " + student[key].course + "</p>");

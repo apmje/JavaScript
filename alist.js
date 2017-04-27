@@ -24,9 +24,7 @@ function prepend(element, list) {
 }
 
 function nth(list, n) {
-    if (list === null)
-        return undefined;
-    else if
+    
 }
 
 console.log(arrayToList([10, 20]));
