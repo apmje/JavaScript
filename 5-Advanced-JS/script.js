@@ -31,12 +31,14 @@ c) correct answer (I would use a number for this)
 11. Display the score in the console. Use yet another method for this.
 */
 
+var quizArr;
 // Function Constructor
 var Question = function (question, answers, correctAnswer) {
     this.question = question;
-    this.answers = [ ];
+    this.answers = answers;
     this.correctAnswer = correctAnswer;
-};
+
+}
 
 // Create questions and assign to an array
 var questionOne = new Question('Who directed 2001: A Space Odyssey, Spartacus and The Shining?', ['Stanley Kubrick', 'Steven Speilberg', 'George Lucas'], 0);
@@ -44,13 +46,14 @@ var questionTwo = new Question('Who directed The Royal Tenanbaums, Rushmore and 
 var questionThree = new Question('Who directed Double Indemnity, The Apartment and Sunset Boulevard?', ['Fritz Lang', 'Billy Wilder', 'Orson Welles'], 1);
 var quizArr = [questionOne, questionTwo, questionThree];
 
-console.log(quizArr[1].answers);
-
-function quiz(quizArr) {
+function quiz() {
     var i = Math.floor(Math.random() * 3);
     console.log(quizArr[i].question);
+    for (var j = 0; j < quizArr.length; j++) {
+        console.log('0' + j + ': ' + quizArr[i].answers[j]);
+    }
+    prompt('Please answer the question in the console or type exit.')
 }
 
-quiz(quizArr);
 
-
+quiz();
