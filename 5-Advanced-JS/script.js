@@ -31,7 +31,6 @@ c) correct answer (I would use a number for this)
 11. Display the score in the console. Use yet another method for this.
 */
 
-var quizArr;
 // Function Constructor
 var Question = function (question, answers, correctAnswer) {
     this.question = question;
@@ -41,19 +40,33 @@ var Question = function (question, answers, correctAnswer) {
 }
 
 // Create questions and assign to an array
-var questionOne = new Question('Who directed 2001: A Space Odyssey, Spartacus and The Shining?', ['Stanley Kubrick', 'Steven Speilberg', 'George Lucas'], 0);
-var questionTwo = new Question('Who directed The Royal Tenanbaums, Rushmore and Moonrise Kingdom?', ['Sofia Coppola', 'Alex Garland', 'Wes Anderson'], 2);
-var questionThree = new Question('Who directed Double Indemnity, The Apartment and Sunset Boulevard?', ['Fritz Lang', 'Billy Wilder', 'Orson Welles'], 1);
-var quizArr = [questionOne, questionTwo, questionThree];
+var q1 = new Question('Who directed 2001: A Space Odyssey, Spartacus and The Shining?', ['Stanley Kubrick', 'Steven Speilberg', 'George Lucas'], 0);
+var q2 = new Question('Who directed The Royal Tenanbaums, Rushmore and Moonrise Kingdom?', ['Sofia Coppola', 'Alex Garland', 'Wes Anderson'], 2);
+var q3 = new Question('Who directed Double Indemnity, The Apartment and Sunset Boulevard?', ['Fritz Lang', 'Billy Wilder', 'Orson Welles'], 1);
+var quizArr = [q1, q2, q3];
+var score = 0;
 
-function quiz() {
-    var i = Math.floor(Math.random() * 3);
+function randomNumber() {
+    var num = Math.floor(Math.random() * quizArr.length);
+    return num;
+};
+
+(function quiz() {
+    var i = randomNumber();
     console.log(quizArr[i].question);
     for (var j = 0; j < quizArr.length; j++) {
-        console.log('0' + j + ': ' + quizArr[i].answers[j]);
+        console.log(j + ': ' + quizArr[i].answers[j]);
     }
-    prompt('Please answer the question in the console or type exit.')
-}
-
-
-quiz();
+    var answer = prompt('Answer question in console or type exit to stop the quiz.')
+    if (parseInt(answer) === quizArr[i].correctAnswer) {
+        console.log('Correct!');
+        score += 1
+        console.log('Your score is ' + score);
+    } else if (answer === 'exit') {
+        return console.log('Thanks for playing. Your final score is ' + score);
+    } else {
+        console.log('Incorrect!');
+        console.log('Your score is ' + score);
+    }
+    return quiz();
+})();
