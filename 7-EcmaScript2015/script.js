@@ -18,7 +18,7 @@ All the report data should be printed to the console.
 HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
 
 */
-
+// CLASS CREATION AND DATA STRUCTURE
 // 1. Store all park information
 
 class Park {
@@ -31,10 +31,10 @@ class Park {
 
     // 3. Create forumla for tree density (numOfTrees / area)
     treeDensity() {
-        let density = this.numOfTrees / this.area;
-        console.log(`${this.name} has a tree density of ${density} per square km.`);
+        let density = parseFloat(this.numOfTrees / this.area).toFixed(2);
+        console.log(`${this.name} has a tree density of ${density} trees per square km.`);
     }
-    
+
 };
 
 const park1 = new Park('Green Park', 70, 376, 3);
@@ -49,16 +49,38 @@ parkData.set(3, park3);
 // 2. Store all street information
 
 class Street {
-    constructor(name, dateBuilt, length) {
+    constructor(name, dateBuilt, lengthofStreet) {
         this.name = name;
         this.dateBuilt = dateBuilt;
-        this.length = length;
+        this.lengthofStreet = lengthofStreet;
+        this.sizeClassification;
     }
+
+    // 8. Assign a size classification to all streets.
+
+    sizeClass() {
+        const l = this.lengthofStreet;
+        let size = '';
+
+        if (l <= 0.4) {
+            size = 'tiny';
+        } else if (l > 0.4 && l <= 0.8) {
+            size = 'small';
+        } else if ((l > 0.8 && l <= 1.2) || l === undefined) {
+            size = 'normal';
+        } else if (l > 1.2 && l <= 2.3) {
+            size = 'big';
+        } else {
+            size = 'huge';
+        }
+        this.sizeClassification = size;
+    };
+
 };
 
 const street1 = new Street('Ocean Avenue', 1999, 2)
 const street2 = new Street('Evergreen Street', 2008, 1.1)
-const street3 = new Street('4th Street', 2015, 0)
+const street3 = new Street('4th Street', 2015, )
 const street4 = new Street('Ocean Avenue', 1982, 3.5)
 
 const streetData = new Map();
@@ -67,27 +89,50 @@ streetData.set('Street2', street2);
 streetData.set('Street3', street3);
 streetData.set('Street4', street4);
 
- 
+// FUNCTION CONTROLLER
 // 4. Create formula for average age of towns park (sumOfAges / numOfParks)
-
 function averageAge(map) {
-    let sum, numOfParks = 0, a = [];
-    for(let [key, value] of map) {
+    let sum, numOfParks = 0,
+        a = [];
+    for (let [key, value] of map) {
         numOfParks++
         a.push(value.age);
-     }
-     sum = parseFloat((a.reduce((a, b) => a + b, 0)) / numOfParks).toFixed(2);
-     return sum;
+    }
+    sum = parseFloat((a.reduce((a, b) => a + b, 0)) / numOfParks).toFixed(2);
+    return sum;
 };
 
 // 5. Find and display park which has more than 1000 trees.
 
-// 6. Create formula to find the total length of all streets
+function numOfTrees(map) {
+    for (let [key, value] of map) {
+        if (value.numOfTrees > 1000) {
+            console.log(`${value.name} has ${value.numOfTrees} trees.`);
+        }
+    }
+};
 
+// 6. Create formula to find the total length of all streets
 // 7. Create formula to find average length of the town's streets
 
-// 8. Assign a size classification to all streets.
+function calculateLength(map) {
+    let total = 0;
+    map.forEach(value => total += value.lengthofStreet)
+    return [total, total / map.size];
+};
 
+function init() {
+    const [totalLength, averageLength] = calculateLength(streetData);
+    console.log(`----PARK REPORT----`)
+    console.log(`Our ${parkData.size} parks have an average age of ${averageAge(parkData)} years.`)
+    parkData.forEach(value => value.treeDensity())
+    numOfTrees(parkData);
+    console.log(`----STREET REPORT----`)
+    console.log(`Our ${streetData.size} streets have a total length of ${totalLength} km with an average of ${averageLength} km.`)
+    for (let [key, value] of streetData) {
+        value.sizeClass();
+        console.log(`${value.name}, was built in ${value.dateBuilt} and is a ${value.sizeClassification} street`);
+    }
+};
 
-
-
+init();
