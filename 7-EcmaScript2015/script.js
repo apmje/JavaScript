@@ -119,7 +119,7 @@ function calculateLength(map) {
     let total = 0;
     map.forEach(value => total += value.lengthofStreet)
     return [total, total / map.size];
-};
+};1111
 
 function init() {
     const [totalLength, averageLength] = calculateLength(streetData);
