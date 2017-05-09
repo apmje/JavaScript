@@ -1,3 +1,3 @@
-# eloquent_JS
+# JavaScript
 
-## All my solutions to exercises for the book Eloquent JavaScript by Marijn Haverbeke.
+## Solutions to excerises and challenges from various JS books and courses I'm doing.
