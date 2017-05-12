@@ -181,21 +181,96 @@
 // }
 
 
-var nestedArr = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8],
-  [9, 10, 11, 12]
-];
+// var nestedArr = [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8],
+//   [9, 10, 11, 12]
+// ];
 
-function printEvens() {
-  for (i = 0; i < nestedArr.length; i++) {
-    for (j = 0; j < nestedArr[i].length; j++) {
-      if (nestedArr[i][j] % 2 === 0) {
-        console.log(nestedArr[i][j]);
-      }
-    }
-  }
-};
+// function printEvens() {
+//   for (i = 0; i < nestedArr.length; i++) {
+//     for (j = 0; j < nestedArr[i].length; j++) {
+//       if (nestedArr[i][j] % 2 === 0) {
+//         console.log(nestedArr[i][j]);
+//       }
+//     }
+//   }
+// };
 
-console.log(printEvens());
+// console.log(printEvens());
+
+// var nestedArr = [
+//   [
+//     [1, 2],
+//     [3, 4]
+//   ],
+//   [
+//     [5, 6]
+//   ]
+// ];
+
+// function sumTotal() {
+//   let totalArr = [], total = 0;
+//   for (let i = 0; i < nestedArr.length; i++) {
+//     for (let j = 0; j < nestedArr[i].length; j++) {
+//       totalArr.push(nestedArr[i][j]);
+//     }
+//   }
+//   for (let k = 0; k < totalArr.length; k++) {
+//     for (let m = 0; m < totalArr[k].length; m++) {
+//       total += totalArr[k][m];
+//     }
+//   }
+//   return total;
+// };
+
+// console.log(sumTotal());
+
+// function rotate(arr, num) {
+//   for (i = 0; i < num; i++)
+//     arr.unshift(arr.pop());
+//     return arr;
+// };
+
+// console.log(rotate([1,2,3], 1)); // [3,1,2]
+// console.log(rotate([1,2,3], 2)); // [2,3,1]
+// console.log(rotate([1,2,3], 3)); // [1,2,3]
+
+
+// function makeXOGrid(row, col) {
+//   let arr = [],
+//     start = true;
+
+//   for (let i = 0; i < row; i++) {
+//     let colArr = []
+//     for (let j = 0; j < col; j++) {
+
+//       if (start)
+//         colArr.push('X');
+//       else 
+//         colArr.push('O');
+      
+//       start = !start;
+//     }
+//     arr.push(colArr);
+//   }
+//   return arr;
+// };
+
+// console.log(makeXOGrid(1, 4));
+
+// /*/
+// [["X","O","X","O"]]
+// /*/
+
+// console.log(makeXOGrid(3, 2));
+
+// /*/
+// [["X","O"],["X","O"],["X","O"]]
+// /*/
+
+// console.log(makeXOGrid(3, 3));
+// /*/
+// [["X","O","X"],["O","X","O"],["X","O","X"]]
+// /*/
