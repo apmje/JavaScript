@@ -9,5 +9,4 @@ section.addEventListener('mouseover', function(e) {
 
 const purpleDiv = document.createElement('div');
 purpleDiv.className = 'purple';
-purpleDiv.style.backgroundColor = 'purple';
 section.appendChild(purpleDiv);
