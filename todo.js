@@ -32,24 +32,22 @@ list.addEventListener('click', function (event) {
             event.target.style.cssText = null;
         }
     } else if (event.target.tagName.toLowerCase() === 'button') {
-        for (let key in localStorage) {
-            if (event.target.previousElementSibling.innerHTML === localStorage[key])
-                localStorage.removeItem(key);
-        };
         event.target.previousElementSibling.remove();
         event.target.remove();
     };
 });
 
-function populateStorage() {
-    for (let i = 0; i < todoNode.length; i++) {
-        if (todoNode[i].textContent !== localStorage['listItem' + i])
-            localStorage.setItem('listItem' + i, todoNode[i].textContent);
+window.onbeforeunload = function populateStorage() {
+    for (let value of todoNode) {
+        if (!storArr.includes(value.innerHTML))
+        storArr.push(value.innerHTML);
+        localStorage.setItem("listItems", JSON.stringify(storArr));
     }
 };
 
-function init() {
-    for (let key in localStorage) {
-        createNewListItem(localStorage.getItem(key));
+window.onload = function init() {
+    storArr = JSON.parse(localStorage.getItem('listItems'));
+    for (let value of storArr) {
+        createNewListItem(value);
     }
 };
