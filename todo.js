@@ -1,24 +1,32 @@
 const form = document.querySelector('#newTodoForm');
 const list = document.querySelector('#todoList')
 const task = document.querySelector('#task');
+const todoNode = document.getElementsByTagName('li');
+let storArr = JSON.parse(localStorage.getItem('listItems')) || [];
 
-// Add new Todo item
+// Function to create a new list item in the UI
+function createNewListItem(value) {
+    const removeButton = document.createElement('button');
+    const li = document.createElement('li');
+    removeButton.innerHTML = 'Remove';
+    list.appendChild(li)
+    list.appendChild(removeButton);
+    li.innerHTML = value;
+};
+
+// Add new Todo item using createNewListItem function and pushes the list item to the array
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-    const removeButton = document.createElement('button');
-    removeButton.innerHTML = 'Remove';
     if (task.value === '') {
         alert('Please enter a Todo item');
     } else {
-        const li = document.createElement('li');
-        list.appendChild(li)
-        list.appendChild(removeButton);
-        li.innerHTML = task.value;
-        task.value = "";
+        createNewListItem(task.value);
+        storArr.push(task.value);
+        task.value = '';
     }
 });
 
-// Line-through text if selected.
+// Line-through text if selected and removal of item in both UI and array.
 list.addEventListener('click', function (event) {
     if (event.target.tagName.toLowerCase() === 'li') {
         if (!event.target.style.textDecoration) {
@@ -27,7 +35,23 @@ list.addEventListener('click', function (event) {
             event.target.style.cssText = null;
         }
     } else if (event.target.tagName.toLowerCase() === 'button') {
-        event.target.previousElementSibling.remove()
+        if (storArr.includes(event.target.previousElementSibling.innerHTML)) {
+            let i = storArr.indexOf(event.target.previousElementSibling.innerHTML)
+            storArr.splice(i, 1);
+        }
+        event.target.previousElementSibling.remove();
         event.target.remove();
-    }
+    };
 });
+
+// Push all array items to local storage upon window close
+window.onbeforeunload = function populateStorage() {
+        localStorage.setItem("listItems", JSON.stringify(storArr));
+};
+
+// Recreate all items in the list when window reopens
+window.onload = function init() {
+    for (let value of storArr) {
+        createNewListItem(value);
+    }
+};
