@@ -32,15 +32,19 @@ list.addEventListener('click', function (event) {
             event.target.style.cssText = null;
         }
     } else if (event.target.tagName.toLowerCase() === 'button') {
-        event.target.previousElementSibling.remove()
+        for (let key in localStorage) {
+            if (event.target.previousElementSibling.innerHTML === localStorage[key])
+                localStorage.removeItem(key);
+        };
+        event.target.previousElementSibling.remove();
         event.target.remove();
-        
-    }
+    };
 });
 
 function populateStorage() {
     for (let i = 0; i < todoNode.length; i++) {
-        localStorage.setItem('listItem' + i, todoNode[i].textContent);
+        if (todoNode[i].textContent !== localStorage['listItem' + i])
+            localStorage.setItem('listItem' + i, todoNode[i].textContent);
     }
 };
 
