@@ -1,33 +1,33 @@
-// var arr = [];
+var arr = [];
 
-// arr.unshift("Anthony");
-// arr.push("McCormick");
-// arr.unshift("Purple");
+arr.unshift("Anthony");
+arr.push("McCormick");
+arr.unshift("Purple");
 
-// console.log(arr);
+console.log(arr);
 
-// arr.shift();
+arr.shift();
 
-// var arr2 = [];
+var arr2 = [];
 
-// arr2.push(11);
-// arr2.push("JavaScript");
+arr2.push(11);
+arr2.push("JavaScript");
 
-// console.log(arr);
-// console.log(arr2);
+console.log(arr);
+console.log(arr2);
 
-// console.log(arr2.indexOf(11));
+console.log(arr2.indexOf(11));
 
-// var combinedArr = arr.concat(arr2);
+var combinedArr = arr.concat(arr2);
 
-// console.log(combinedArr);
+console.log(combinedArr);
 
-// var arr = ["JavaScript", "Python", "Ruby", "Java"]
-// var arr1 = ["Haskell", "Clojure"];
+var arr = ["JavaScript", "Python", "Ruby", "Java"]
+var arr1 = ["Haskell", "Clojure"];
 
-// console.log(arr.slice(1, 3).concat(arr1));
+console.log(arr.slice(1, 3).concat(arr1));
 
-// console.log(arr.join(", "));
+console.log(arr.join(", "));
 
 
 var people = ["Greg", "Mary", "Devon", "James"];
