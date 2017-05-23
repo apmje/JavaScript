@@ -1,0 +1,23 @@
+{
+  "name": "hash_generator",
+  "version": "0.0.1",
+  "description": "A password hash generator",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apmje/eloquent_JS.git"
+  },
+  "author": "Anthony McCormick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apmje/eloquent_JS/issues"
+  },
+  "homepage": "https://github.com/apmje/eloquent_JS#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2"
+  },
+  "devDependencies": {}
+}
