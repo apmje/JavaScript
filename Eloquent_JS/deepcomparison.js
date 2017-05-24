@@ -8,27 +8,29 @@
 
 
 var deepEqual = function (val1, val2) {
-    var prop1 = 0, prop2 = 0
+    var prop1 = 0,
+        prop2 = 0
 
-    if (val1 === val2) 
+    if (val1 === val2) {
         return true;
-    
-        if (val1 == null || typeof val1 != 'object' || val2 == null || typeof val2 != 'object') {
+    }
+
+    if (val1 == null || typeof val1 != 'object' || val2 == null || typeof val2 != 'object') {
+        return false;
+    };
+
+    for (var prop in val1) {
+        prop1 += 1;
+    };
+
+    for (var prop in val2) {
+        prop2 += 1;
+        if (!(prop in val1) || !deepEqual(val1[prop], val2[prop])) {
             return false;
         };
-
-        for (var prop in val1) {
-            prop1 += 1;
-        };
-
-        for (var prop in val2) {
-            prop2 += 1;
-            if (!(prop in val1) || !deepEqual(val1[prop], val2[prop])) {
-                return false;
-            };
-        };
-        return prop1 == prop2;
     };
+    return prop1 == prop2;
+};
 
 var obj = {
     here: {

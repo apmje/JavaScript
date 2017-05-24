@@ -21,7 +21,7 @@ form.addEventListener("submit", function (event) {
         alert('Please enter a Todo item');
     } else {
         createNewListItem(task.value);
-        storArr.push(task.value);
+        storArr.push({task: task.value, isComplete: false});
         task.value = '';
     }
 });
@@ -52,6 +52,9 @@ window.onbeforeunload = function populateStorage() {
 // Recreate all items in the list when window reopens
 window.onload = function init() {
     for (let value of storArr) {
-        createNewListItem(value);
+        let todo = createNewListItem(value.task);
+        if (value.isComplete ===  true) {
+            todo.style.textDecoration = 'line-through';
+        }
     }
 };
